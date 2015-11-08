@@ -16,7 +16,7 @@
 		"vscode": "^0.10.0"
 	},
 	"categories": [
-		"Others"
+		"Other"
 	],
 	"activationEvents": [
 		"onCommand:extension.join-lines"

@@ -8,6 +8,7 @@
 	"bugs": {
 		"url": "https://github.com/wmaurer/vscode-change-case/issues"
 	},
+	"homepage": "https://github.com/wmaurer/vscode-join-lines/blob/master/README.md",
 	"license": "MIT",
 	"version": "0.1.0",
 	"publisher": "wmaurer",

@@ -1,21 +1,20 @@
 import * as vscode from 'vscode';
 
-const whitespaceAtStartOfLine = /^\s*/;
 const whitespaceAtEndOfLine = /\s*$/;
 
-export function activate() {
+export function activate(context: vscode.ExtensionContext) {
 
-	vscode.commands.registerTextEditorCommand('extension.join-lines', (textEditor, edit) => {
-		const document = textEditor.getTextDocument();
+	const disposable = vscode.commands.registerTextEditorCommand('extension.join-lines', (textEditor, edit) => {
+		const document = textEditor.document;
 
 		const newSelections: { numLinesRemoved: number, selection: vscode.Selection }[] = [];
 
 		textEditor.edit(editBuilder => {
-			const onlyOneSelection = textEditor.getSelections().length === 1;
-			textEditor.getSelections()
+			const onlyOneSelection = textEditor.selections.length === 1;
+			textEditor.selections
 				.forEach(selection => {
 					if (isRangeSimplyCursorPosition(selection)) {
-						const newSelectionEnd =  document.getLineMaxColumn(selection.start.line) - joinLineWithNext(selection.start.line, editBuilder, document).whitespaceLengthAtEnd;
+						const newSelectionEnd =  document.lineAt(selection.start.line).range.end.character - joinLineWithNext(selection.start.line, editBuilder, document).whitespaceLengthAtEnd;
 						newSelections.push({
 							numLinesRemoved: 1,
 							selection: new vscode.Selection(
@@ -26,10 +25,10 @@ export function activate() {
 						joinLineWithNext(selection.start.line, editBuilder, document);
 						newSelections.push({ numLinesRemoved: 1, selection });
 					} else {
-						const numberOfCharactersOnFirstLine = document.getLineMaxColumn(selection.start.line);
+						const numberOfCharactersOnFirstLine = document.lineAt(selection.start.line).range.end.character;
 						let endCharacterOffset = 0;
 						for (let lineIndex = selection.start.line; lineIndex <= selection.end.line - 1; lineIndex++) {
-							const charactersInLine = lineIndex == selection.end.line - 1 ? selection.end.character : document.getLineMaxColumn(lineIndex + 1);
+							const charactersInLine = lineIndex == selection.end.line - 1 ? selection.end.character + 1 : document.lineAt(lineIndex + 1).range.end.character + 1;
 							const whitespaceLengths = joinLineWithNext(lineIndex, editBuilder, document);
 							endCharacterOffset += charactersInLine - whitespaceLengths.whitespaceLengthAtEnd - whitespaceLengths.whitespaceLengthAtStart;
 						}
@@ -49,9 +48,13 @@ export function activate() {
 				return new vscode.Selection(newLineNumber, selection.start.character, newLineNumber, selection.end.character);
 			});
 
-			textEditor.setSelections(selections);
+			textEditor.selections
+
+			textEditor.selections = selections;
 		});
 	});
+
+	context.subscriptions.push(disposable);
 }
 
 function isRangeOnOneLine(range: vscode.Range): boolean {
@@ -63,14 +66,13 @@ function isRangeSimplyCursorPosition(range: vscode.Range): boolean {
 }
 
 function joinLineWithNext(line: number, editBuilder: vscode.TextEditorEdit, document: vscode.TextDocument): { whitespaceLengthAtEnd: number, whitespaceLengthAtStart: number } {
-	const matchWhitespaceAtEnd = document.getTextOnLine(line).match(whitespaceAtEndOfLine);
-	const matchWhitespaceAtStart = document.getTextOnLine(line + 1).match(whitespaceAtStartOfLine);
+	const matchWhitespaceAtEnd = document.lineAt(line).text.match(whitespaceAtEndOfLine);
 	const range = new vscode.Range(
-		line, document.getLineMaxColumn(line) - matchWhitespaceAtEnd[0].length,
-		line + 1, matchWhitespaceAtStart[0].length + 1);
+		line, document.lineAt(line).range.end.character - matchWhitespaceAtEnd[0].length,
+		line + 1, document.lineAt(line + 1).firstNonWhitespaceCharacterIndex);
 	editBuilder.replace(range, ' ');
 	return {
 		whitespaceLengthAtEnd: matchWhitespaceAtEnd[0].length,
-		whitespaceLengthAtStart: matchWhitespaceAtStart[0].length
+		whitespaceLengthAtStart: document.lineAt(line + 1).firstNonWhitespaceCharacterIndex
 	}
 }

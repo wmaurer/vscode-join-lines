@@ -12,13 +12,18 @@
 	"version": "0.1.0",
 	"publisher": "wmaurer",
 	"engines": {
-		"vscode": "*"
+		"vscode": "^0.10.0"
 	},
-	"activationEvents": [],
+	"categories": [
+		"Others"
+	],
+	"activationEvents": [
+		"onCommand:extension.join-lines"
+	],
 	"main": "./out/extension",
 	"contributes": {
-		"commands":
-			[{
+		"commands": [
+			{
 				"command": "extension.join-lines",
 				"title": "Join Lines"
 			}
@@ -31,10 +36,10 @@
 		]
 	},
 	"scripts": {
-		"vscode:prepublish": "tsc",
+		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
 		"compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
 	},
 	"devDependencies": {
-		"vscode": "*"
+		"vscode": "0.10.x"
 	}
 }

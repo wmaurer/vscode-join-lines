@@ -4,10 +4,11 @@
 
 Use Ctrl-j | ⌘-j to join lines, just like in Atom and similar to Sublime Text: the next line is joined to
 the current line, and all whitespace is replaced with a single space.
+![join-lines-preview](https://cloud.githubusercontent.com/assets/2899448/11255751/36ee036a-8e48-11e5-8e1f-8889bf2df026.gif)
 
 ## Install
 
-Press F1 in Visual Studio Code, then `ext`, then select `install` and type `join-lines` then hit enter. 
+Press F1 in Visual Studio Code, then `ext`, then select `install` and type `join-lines` then hit enter.
 
 ## Functionality in Detail
 

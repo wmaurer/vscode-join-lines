@@ -15,7 +15,7 @@
 	},
 	"homepage": "https://github.com/wmaurer/vscode-join-lines/blob/master/README.md",
 	"license": "MIT",
-	"version": "0.1.3",
+	"version": "0.1.4",
 	"publisher": "wmaurer",
 	"engines": {
 		"vscode": "^0.10.0"
@@ -38,6 +38,10 @@
 			{
 				"command": "extension.join-lines",
 				"key": "ctrl+j"
+			},
+			{
+				"command": "extension.join-lines",
+				"key": "cmd+j"
 			}
 		]
 	},

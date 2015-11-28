@@ -2,7 +2,7 @@
 
 ## Feature Overview
 
-Use Ctrl-j | ⌘-j to join lines, just like in Atom and similar to Sublime Text: the next line is joined to
+Use Ctrl+j | ⌘+j to join lines, just like in Atom and similar to Sublime Text: the next line is joined to
 the current line, and all whitespace is replaced with a single space.
 
 ![join-lines-preview](https://cloud.githubusercontent.com/assets/2899448/11255751/36ee036a-8e48-11e5-8e1f-8889bf2df026.gif)
@@ -20,3 +20,7 @@ of the original line (minus whitespace)
 * If text is selected, and it spans multiple lines, the selected lines are joined, and the selection is retained (minus whitespace)
 
 Multiple selections are also supported.
+
+## Support
+
+[Create an issue](https://github.com/wmaurer/vscode-join-lines/issues), or ping [@waynemaurer](https://twitter.com/waynemaurer) on Twitter.

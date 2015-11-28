@@ -1,6 +1,6 @@
 {
 	"name": "join-lines",
-	"description": "Use Ctrl-j to join lines, just like in Atom and similar to Sublime Text.",
+	"description": "Use Ctrl+j/Cmd+j to join lines, just like in Atom and similar to Sublime Text.",
 	"icon": "images/join-lines-icon.png",
 	"galleryBanner" : {
 		"color": "#1e1e1e",
@@ -15,7 +15,7 @@
 	},
 	"homepage": "https://github.com/wmaurer/vscode-join-lines/blob/master/README.md",
 	"license": "MIT",
-	"version": "0.1.4",
+	"version": "0.1.5",
 	"publisher": "wmaurer",
 	"engines": {
 		"vscode": "^0.10.0"

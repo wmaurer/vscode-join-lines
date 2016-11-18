@@ -11,6 +11,7 @@ export function activate(context: vscode.ExtensionContext) {
 
         textEditor.edit(editBuilder => {
             textEditor.selections
+                .filter(selection => selection.end.line !== document.lineCount - 1)
                 .forEach(selection => {
                     if (isRangeSimplyCursorPosition(selection)) {
                         const newSelectionEnd = document.lineAt(selection.start.line).range.end.character - joinLineWithNext(selection.start.line, editBuilder, document).whitespaceLengthAtEnd;
@@ -47,7 +48,9 @@ export function activate(context: vscode.ExtensionContext) {
                 return new vscode.Selection(newLineNumber, selection.start.character, newLineNumber, selection.end.character);
             });
 
-            textEditor.selections = selections;
+            if (selections.length > 0) {
+                textEditor.selections = selections;
+            }
         });
     });
 

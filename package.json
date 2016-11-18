@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/wmaurer/vscode-join-lines/blob/master/README.md",
   "license": "MIT",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "publisher": "wmaurer",
   "engines": {
     "vscode": "^1.6.0"
@@ -26,7 +26,7 @@
   "activationEvents": [
     "onCommand:extension.join-lines"
   ],
-  "main": "./out/extension",
+  "main": "./out/src/extension",
   "contributes": {
     "commands": [
       {

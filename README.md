@@ -9,7 +9,10 @@ the current line, and all whitespace is replaced with a single space.
 
 ## Install
 
-Press F1 in Visual Studio Code, then `ext`, then select `install` and type `join-lines` then hit enter.
+Launch VS Code Quick Open (Ctrl/Cmd+P), paste the following command, and press enter.
+```
+ext install join-lines
+```
 
 ## Functionality in Detail
 

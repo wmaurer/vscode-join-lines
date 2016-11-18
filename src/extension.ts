@@ -10,7 +10,6 @@ export function activate(context: vscode.ExtensionContext) {
         const newSelections: { numLinesRemoved: number, selection: vscode.Selection }[] = [];
 
         textEditor.edit(editBuilder => {
-            const onlyOneSelection = textEditor.selections.length === 1;
             textEditor.selections
                 .forEach(selection => {
                     if (isRangeSimplyCursorPosition(selection)) {
@@ -47,8 +46,6 @@ export function activate(context: vscode.ExtensionContext) {
                 const newLineNumber = selection.start.line - numPreviousLinesRemoved;
                 return new vscode.Selection(newLineNumber, selection.start.character, newLineNumber, selection.end.character);
             });
-
-            textEditor.selections
 
             textEditor.selections = selections;
         });

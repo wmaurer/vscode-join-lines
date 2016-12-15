@@ -2,7 +2,7 @@
 
 ## DEPRECATION NOTICE
 
-First of all, I'd like to thank all the users of this extensions. At the time of writing, it's been installed 6,741 times, and it's satisfying to know that people have found it to be useful. Thanks especially to those who gave positive feedback.
+First of all, I'd like to thank all the users of this extension. At the time of writing, it has been installed 6,741 times, and it's satisfying to know that people have found it to be useful. Thanks especially to those who gave positive feedback.
 
 **This extension is no longer required**<br>
 In the November 2016 release of Visual Studio Code 1.8, a Join Lines command has built into Visual Studio Code [(see release notes)](https://code.visualstudio.com/updates#_sublime-text-compatibility).
